@@ -1,12 +1,54 @@
+import { useEffect, useRef } from "react";
 import "./App.css";
+import appleLogo from "./assets/apple.png";
 import collarClosed from "./assets/collar-closed.png";
 import collarInsideDumbbell from "./assets/collar-inside-dumbbell.png";
 import collarOpen from "./assets/collar-open.png";
 import collarOutsideDumbbell from "./assets/collar-outside-dumbbell.png";
+import dashboard from "./assets/dashboard.png";
+import exerciseStats from "./assets/exercise-stats.png";
+import googleLogo from "./assets/google.png";
+import analytics from "./assets/more-analytics.png";
+import setComplete from "./assets/set-complete.png";
 import weightMachine from "./assets/weight-machine.png";
 import weightStackCloseup from "./assets/weight-stack-closeup.png";
 
 function App() {
+  const appShowcaseRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!appShowcaseRef.current) return;
+
+      const section = appShowcaseRef.current;
+      const rect = section.getBoundingClientRect();
+      const windowHeight = window.innerHeight;
+      const sectionTop = rect.top;
+      const sectionHeight = rect.height;
+
+      // Check if section is in view
+      if (sectionTop < windowHeight && sectionTop + sectionHeight > 0) {
+        // Calculate scroll progress - extends the animation over the full section height
+        const scrollProgress = Math.max(
+          0,
+          Math.min(1, (windowHeight - sectionTop) / (sectionHeight * 0.8))
+        );
+
+        const carousel = section.querySelector(".app-carousel") as HTMLElement;
+        if (carousel) {
+          // Animate from right (100%) to left (-50%), showing all screenshots
+          const translateX = 100 - scrollProgress * 150;
+          carousel.style.transform = `translateX(${translateX}%)`;
+        }
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    handleScroll();
+
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
     <div className="app">
       {/* Header */}
@@ -41,13 +83,22 @@ function App() {
           <p className="hero-subtitle">
             The Future of Strength Training Is Here
           </p>
-          <button className="app-store-button">
-            <span className="apple-icon">🍎</span>
-            <div>
-              <div className="download-text">Download on the</div>
-              <div className="store-text">App Store</div>
-            </div>
-          </button>
+          <div className="app-buttons">
+            <button className="app-store-button">
+              <img src={appleLogo} alt="Apple" className="store-logo" />
+              <div>
+                <div className="download-text">Download on the</div>
+                <div className="store-text">App Store</div>
+              </div>
+            </button>
+            <button className="app-store-button play-store">
+              <img src={googleLogo} alt="Google Play" className="store-logo" />
+              <div>
+                <div className="download-text">Get it on</div>
+                <div className="store-text">Google Play</div>
+              </div>
+            </button>
+          </div>
           <div className="hero-product-image">
             <img
               src={collarInsideDumbbell}
@@ -487,6 +538,73 @@ function App() {
         </div>
       </section>
 
+      {/* App Showcase Section */}
+      <section className="app-showcase-section" ref={appShowcaseRef}>
+        <div className="container">
+          <div className="app-showcase-content">
+            <div className="app-showcase-text">
+              <h2 className="mega-title">
+                Experience the
+                <br />
+                <span className="highlight">Power</span> of
+                <br />
+                Smart Training
+              </h2>
+              <p className="section-description">
+                Track every rep, analyze your performance, and reach your goals
+                faster with real-time insights and personalized coaching - all
+                in the palm of your hand.
+              </p>
+              <div className="app-features-list">
+                <div className="app-feature">
+                  <span className="feature-check">✓</span>
+                  <span>Real-time workout tracking</span>
+                </div>
+                <div className="app-feature">
+                  <span className="feature-check">✓</span>
+                  <span>Detailed performance analytics</span>
+                </div>
+                <div className="app-feature">
+                  <span className="feature-check">✓</span>
+                  <span>Personalized workout recommendations</span>
+                </div>
+                <div className="app-feature">
+                  <span className="feature-check">✓</span>
+                  <span>Track your progress over time</span>
+                </div>
+              </div>
+            </div>
+            <div className="app-carousel">
+              <div className="app-screenshot">
+                <img
+                  src={dashboard}
+                  alt="Playfit Dashboard - Welcome screen with workout stats"
+                />
+                <div className="screenshot-label">Dashboard</div>
+              </div>
+              <div className="app-screenshot">
+                <img
+                  src={exerciseStats}
+                  alt="Live exercise analysis with velocity tracking"
+                />
+                <div className="screenshot-label">Live Analysis</div>
+              </div>
+              <div className="app-screenshot">
+                <img
+                  src={setComplete}
+                  alt="Set completion with performance breakdown"
+                />
+                <div className="screenshot-label">Performance</div>
+              </div>
+              <div className="app-screenshot">
+                <img src={analytics} alt="Workout analytics and insights" />
+                <div className="screenshot-label">Analytics</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Product Hero Section */}
       <section className="product-hero">
         <div className="container">
@@ -532,13 +650,26 @@ function App() {
               </div>
               <div className="footer-app">
                 <h3>Get the Playfit app</h3>
-                <button className="app-store-button">
-                  <span className="apple-icon">🍎</span>
-                  <div>
-                    <div className="download-text">Download on the</div>
-                    <div className="store-text">App Store</div>
-                  </div>
-                </button>
+                <div className="app-buttons">
+                  <button className="app-store-button">
+                    <img src={appleLogo} alt="Apple" className="store-logo" />
+                    <div>
+                      <div className="download-text">Download on the</div>
+                      <div className="store-text">App Store</div>
+                    </div>
+                  </button>
+                  <button className="app-store-button play-store">
+                    <img
+                      src={googleLogo}
+                      alt="Google Play"
+                      className="store-logo"
+                    />
+                    <div>
+                      <div className="download-text">Get it on</div>
+                      <div className="store-text">Google Play</div>
+                    </div>
+                  </button>
+                </div>
               </div>
             </div>
             <div className="footer-links">
