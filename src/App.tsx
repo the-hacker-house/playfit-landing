@@ -1,4 +1,3 @@
-import { useEffect, useRef } from "react";
 import "./App.css";
 import appleLogo from "./assets/apple.png";
 import collarClosed from "./assets/collar-closed.png";
@@ -8,65 +7,20 @@ import collarOutsideDumbbell from "./assets/collar-outside-dumbbell.png";
 import dashboard from "./assets/dashboard.png";
 import exerciseStats from "./assets/exercise-stats.png";
 import googleLogo from "./assets/google.png";
+import logo from "./assets/logo.png";
 import analytics from "./assets/more-analytics.png";
 import setComplete from "./assets/set-complete.png";
 import weightMachine from "./assets/weight-machine.png";
 import weightStackCloseup from "./assets/weight-stack-closeup.png";
 
 function App() {
-  const appShowcaseRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      if (!appShowcaseRef.current) return;
-
-      const section = appShowcaseRef.current;
-      const rect = section.getBoundingClientRect();
-      const windowHeight = window.innerHeight;
-      const sectionTop = rect.top;
-      const sectionHeight = rect.height;
-
-      // Check if section is in view
-      if (sectionTop < windowHeight && sectionTop + sectionHeight > 0) {
-        // Calculate scroll progress - extends the animation over the full section height
-        const scrollProgress = Math.max(
-          0,
-          Math.min(1, (windowHeight - sectionTop) / (sectionHeight * 0.8))
-        );
-
-        const carousel = section.querySelector(".app-carousel") as HTMLElement;
-        if (carousel) {
-          // Animate from right (100%) to left (-50%), showing all screenshots
-          const translateX = 100 - scrollProgress * 150;
-          carousel.style.transform = `translateX(${translateX}%)`;
-        }
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    handleScroll();
-
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
   return (
     <div className="app">
       {/* Header */}
       <header className="header">
         <div className="container">
           <div className="header-content">
-            <div className="logo">
-              <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
-                <path
-                  d="M8 8L16 20L8 32M24 8L32 20L24 32"
-                  stroke="white"
-                  strokeWidth="3"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
-              <span>PLAYFIT</span>
-            </div>
+            <img src={logo} alt="Playfit Logo" height="32" />
             <button className="cta-button">Sold Out ›</button>
           </div>
         </div>
@@ -76,12 +30,12 @@ function App() {
       <section className="hero">
         <div className="container">
           <h1 className="hero-title">
-            Discover Playfit
+            Turn Every Workout Into
             <br />
-            <span className="highlight">Smart</span> Collar
+            An <span className="highlight">Epic</span> Quest
           </h1>
           <p className="hero-subtitle">
-            The Future of Strength Training Is Here
+            Level Up Your Fitness With Gamified Training
           </p>
           <div className="app-buttons">
             <button className="app-store-button">
@@ -108,7 +62,7 @@ function App() {
         </div>
       </section>
 
-      {/* Notification Section */}
+      {/* Gamification Section */}
       <section className="notification-section">
         <div className="container">
           <div className="notification-demo">
@@ -116,27 +70,30 @@ function App() {
               <div className="notification-header">
                 <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
                   <path
-                    d="M6 6L12 16L6 26M20 6L26 16L20 26"
-                    stroke="white"
+                    d="M16 2L20 12L30 14L22 22L24 32L16 27L8 32L10 22L2 14L12 12L16 2Z"
+                    fill="#FFD700"
+                    stroke="#FFA500"
                     strokeWidth="2"
                   />
                 </svg>
                 <span className="notification-title">
-                  Keep your streak going
+                  🔥 7-Day Streak! Keep crushing it!
                 </span>
                 <span className="notification-time">8:15 AM</span>
               </div>
               <p className="notification-text">
-                Morning! ⭐ We've got a fun workout for you today. Start your
-                day right!
+                You've unlocked the "Week Warrior" badge! Complete 3 more days
+                for the epic "Perfect 10" achievement. 🏆
               </p>
             </div>
             <div className="notification-content">
-              <h2 className="section-title">Smart coaching in your pocket</h2>
+              <h2 className="section-title">
+                Earn Rewards, Unlock Achievements
+              </h2>
               <p className="section-description">
-                Strength training is no longer optional, it's essential. Let
-                Playfit's smart collar and coaching app guide you with
-                personalized workouts that fit right into your busy schedule.
+                Every rep counts toward your next level. Collect badges,
+                complete daily quests, climb leaderboards, and compete with
+                friends as you transform into the strongest version of yourself.
               </p>
               <button className="cta-button">Sold Out ›</button>
             </div>
@@ -203,15 +160,14 @@ function App() {
       <section className="form-section">
         <div className="container">
           <h2 className="mega-title">
-            Perfect <span className="highlight">Form,</span>
+            Compete, <span className="highlight">Challenge,</span>
             <br />
-            Every <span className="highlight">Rep</span>
+            Conquer <span className="highlight">Together</span>
           </h2>
           <p className="mega-description">
-            Unsure of a move? Achieve flawless exercise form with Playfit's
-            advanced motion sensors and AI-powered form tracking. Our smart
-            collar provides real-time feedback and corrections, ensuring each
-            movement is performed safely and effectively.
+            Join global challenges, compete on leaderboards, and battle friends
+            in head-to-head workout duels. Turn your training into an adventure
+            where every set brings you closer to victory and legendary status.
           </p>
         </div>
       </section>
@@ -222,24 +178,25 @@ function App() {
           <div className="training-content">
             <div className="phone-mockup">
               <div className="phone-screen">
-                <div className="week-header">This week</div>
+                <div className="week-header">Daily Quest</div>
                 <div className="workout-card">
-                  <span className="workout-badge">STRENGTH</span>
-                  <h3 className="workout-name">This is Sparta</h3>
+                  <span className="workout-badge">⚡ CHALLENGE</span>
+                  <h3 className="workout-name">Champion's Gauntlet</h3>
                   <p className="workout-details">
-                    45 min • Upper Body • Intermediate
+                    45 min • Upper Body • +500 XP • 🏅 3 Badges
                   </p>
                 </div>
               </div>
             </div>
             <div className="training-text">
               <h2 className="section-title">
-                Personalized coaching & training
+                Quest-Based Workouts & Challenges
               </h2>
               <p className="section-description">
-                Achieve your goals - across muscle gain, weight loss, and more -
-                with Playfit's coaching app featuring personalized training
-                plans designed specifically for your body and progress.
+                Embark on epic fitness journeys with quest-based workouts.
+                Complete daily missions, weekly challenges, and seasonal
+                campaigns to earn massive XP bonuses, unlock exclusive badges,
+                and climb to the top of the leaderboard.
               </p>
               <button className="cta-button">Sold Out ›</button>
             </div>
@@ -250,40 +207,40 @@ function App() {
       {/* Features Grid Section */}
       <section className="features-grid-section">
         <div className="container">
-          <h2 className="section-title center">Let Playfit do the work</h2>
+          <h2 className="section-title center">Level Up Your Game</h2>
           <p className="section-subtitle">
-            Just attach the Playfit smart collar,
+            Playfit transforms every workout into an epic adventure
             <br />
-            hit 'go' and experience intelligent training
+            with powerful gamification features that keep you
             <br />
-            with a range of features including:
+            motivated and coming back for more:
           </p>
 
           <div className="features-grid">
             <div className="feature-item">
-              <div className="feature-icon">🏃</div>
-              <div className="feature-name">Automatic rep tracking</div>
+              <div className="feature-icon">�</div>
+              <div className="feature-name">Achievement badges & trophies</div>
             </div>
             <div className="feature-item">
-              <div className="feature-icon">✓</div>
-              <div className="feature-name">Real-time form tracking</div>
+              <div className="feature-icon">⚡</div>
+              <div className="feature-name">XP & level progression system</div>
+            </div>
+            <div className="feature-item">
+              <div className="feature-icon">🔥</div>
+              <div className="feature-name">Daily streaks & bonus rewards</div>
             </div>
             <div className="feature-item">
               <div className="feature-icon">🎯</div>
-              <div className="feature-name">Exercise recognition</div>
-            </div>
-            <div className="feature-item">
-              <div className="feature-icon">⚙️</div>
-              <div className="feature-name">Smart weight recommendations</div>
-            </div>
-            <div className="feature-item">
-              <div className="feature-icon">AI</div>
-              <div className="feature-name">AI-powered coaching</div>
+              <div className="feature-name">Quest-based workout missions</div>
             </div>
             <div className="feature-item">
               <div className="feature-icon">📊</div>
+              <div className="feature-name">Global & friend leaderboards</div>
+            </div>
+            <div className="feature-item">
+              <div className="feature-icon">⚔️</div>
               <div className="feature-name">
-                Personalized analytics and insights
+                Head-to-head workout challenges
               </div>
             </div>
           </div>
@@ -291,18 +248,19 @@ function App() {
           <div className="strength-notification">
             <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
               <path
-                d="M10 10L20 24L10 38M28 10L38 24L28 38"
-                stroke="black"
+                d="M24 4L28 18L42 20L32 30L35 44L24 37L13 44L16 30L6 20L20 18L24 4Z"
+                fill="#FFD700"
+                stroke="#FFA500"
                 strokeWidth="3"
               />
             </svg>
             <div>
               <h3 className="notification-title-dark">
-                Strength increase detected!
+                🎉 Achievement Unlocked: Iron Warrior!
               </h3>
               <p className="notification-text-dark">
-                Your rep quality and velocity are trending upwards. Keep up the
-                great work! 💪
+                You've completed 100 perfect reps! Earned +1000 XP and the
+                legendary Iron Warrior badge. 💪
               </p>
             </div>
             <span className="notification-time-dark">5:28 PM</span>
@@ -316,70 +274,68 @@ function App() {
           <div className="vbt-content">
             <div className="vbt-text">
               <h2 className="section-title">
-                Progress effectively - and safely
+                Track Your Progress & Climb the Ranks
               </h2>
               <p className="section-description">
-                Playfit's state-of-the-art velocity-based training (VBT)
-                analyzes the speed of your reps to determine exactly when you
-                should increase or decrease the weight.
+                Watch your level rise as you complete workouts and challenges.
+                Every rep earns XP, every milestone unlocks rewards. Compare
+                your progress with friends and see who rules the leaderboard.
               </p>
               <button className="cta-button">Sold Out ›</button>
             </div>
             <div className="vbt-chart">
               <div className="chart-bar" style={{ height: "100%" }}>
                 <span className="bar-label">
-                  0.70
+                  LVL
                   <br />
-                  M/S
+                  32
                 </span>
               </div>
               <div className="chart-bar" style={{ height: "88%" }}>
                 <span className="bar-label">
-                  0.62
+                  LVL
                   <br />
-                  M/S
+                  28
                 </span>
               </div>
               <div className="chart-bar" style={{ height: "77%" }}>
                 <span className="bar-label">
-                  0.54
+                  LVL
                   <br />
-                  M/S
+                  24
                 </span>
               </div>
               <div className="chart-bar" style={{ height: "64%" }}>
                 <span className="bar-label">
-                  0.45
+                  LVL
                   <br />
-                  M/S
+                  20
                 </span>
               </div>
               <div className="chart-bar" style={{ height: "46%" }}>
                 <span className="bar-label">
-                  0.32
+                  LVL
                   <br />
-                  M/S
+                  16
                 </span>
               </div>
               <div className="chart-bar" style={{ height: "36%" }}>
                 <span className="bar-label">
-                  0.25
+                  LVL
                   <br />
-                  M/S
+                  12
                 </span>
               </div>
               <div className="chart-bar" style={{ height: "30%" }}>
                 <span className="bar-label">
-                  0.21
-                  <br />
-                  M/S
+                  LVL
+                  <br />8
                 </span>
               </div>
               <div className="chart-bar" style={{ height: "24%" }}>
                 <span className="bar-label">
-                  0.17
-                  <br />
-                  M/S
+                  LVL
+                  <br />4
                 </span>
               </div>
             </div>
@@ -393,19 +349,20 @@ function App() {
           <div className="weight-plate-grid">
             <div className="plate-item">
               <img src={collarClosed} alt="Smart Collar Closed View" />
-              <h3>Sleek Matte Black Design</h3>
+              <h3>Earn Epic Badges</h3>
               <p>
-                Compact 2-3 inch cylinder with six screws securing the halves.
-                Features embossed purple logo and top slot for
-                button/LED/charging.
+                Unlock exclusive achievement badges as you hit milestones. From
+                "First Steps" to "Legendary Warrior" - collect them all and show
+                off your progress to the community.
               </p>
             </div>
             <div className="plate-item">
               <img src={weightStackCloseup} alt="Weight Machine Attachment" />
-              <h3>Weight Machine Compatible</h3>
+              <h3>Join The Battle</h3>
               <p>
-                Clamps directly onto guide rods of weight machines to
-                automatically track resistance, reps, and tempo.
+                Challenge friends to workout duels, join team competitions, and
+                compete in seasonal tournaments for exclusive rewards and
+                bragging rights.
               </p>
             </div>
           </div>
@@ -423,12 +380,12 @@ function App() {
               />
             </div>
             <div className="equipment-text">
-              <h2 className="section-title">Transform Cable Machines</h2>
+              <h2 className="section-title">Build Your Fitness Empire</h2>
               <p className="section-description">
-                Works seamlessly with selectorized strength training machines
-                like chest press and pec deck. Attach to guide rods to
-                automatically track weight stack movement, resistance levels,
-                and exercise tempo - no manual logging required.
+                Start as a novice and rise through the ranks to become a fitness
+                legend. Complete themed workout campaigns, conquer boss-level
+                challenges, and unlock new training zones as you prove your
+                strength.
               </p>
               <button className="cta-button">Sold Out ›</button>
             </div>
@@ -440,41 +397,42 @@ function App() {
       <section className="reviews-section">
         <div className="container">
           <h2 className="mega-title center">
-            Customer <span className="highlight">Reviews</span>
+            Players <span className="highlight">Love</span> It
           </h2>
           <p className="section-subtitle">
-            See why people are calling this the future of fitness.
+            Join thousands of fitness gamers crushing their goals.
           </p>
 
           <div className="reviews-grid">
             <div className="review-card">
               <div className="stars">⭐⭐⭐⭐⭐</div>
               <h3 className="review-title">
-                They've delivered on everything promised!
+                The gamification is incredibly addicting!
               </h3>
               <p className="review-text">
-                I was a bit nervous investing in something that came to me
-                through an Instagram ad. I'm so glad I took the chance!
+                I never thought I'd be excited to wake up at 6am for a workout,
+                but the daily quests and leaderboard have me hooked. Already
+                level 28! 🔥
               </p>
             </div>
             <div className="review-card">
               <div className="stars">⭐⭐⭐⭐⭐</div>
               <h3 className="review-title">
-                Fantastic addition to our home gym!
+                Competing with friends changed everything!
               </h3>
               <p className="review-text">
-                I received my Playfit collar about a week ago and absolutely
-                love it! Seamless setup and easy to start workouts with all my
-                existing equipment...
+                My buddies and I challenge each other constantly. The badges and
+                achievements make every workout feel like a victory. I've never
+                been this consistent before.
               </p>
             </div>
             <div className="review-card">
               <div className="stars">⭐⭐⭐⭐⭐</div>
-              <h3 className="review-title">Better than I expected!</h3>
+              <h3 className="review-title">It's like an RPG for fitness!</h3>
               <p className="review-text">
-                I was anxiously awaiting my Playfits since I first backed the
-                project last year. When I finally received them, I was blown
-                away by the quality and the feel of...
+                Leveling up, unlocking achievements, completing quests - this is
+                exactly what I needed to stay motivated. Already collected 47
+                badges and I'm not stopping! 🏆
               </p>
             </div>
           </div>
@@ -487,26 +445,26 @@ function App() {
           <div className="metrics-grid">
             <div className="metric-panel">
               <h2 className="panel-title">
-                Advanced <span className="highlight">metrics</span>.
+                Track Your <span className="highlight">XP</span>.
               </h2>
               <div className="phone-mockup-small">
                 <div className="metrics-screen">
-                  <h3 className="metric-header">Volume</h3>
+                  <h3 className="metric-header">Experience Points</h3>
                   <div className="metric-stat">
-                    <span className="metric-value">3080</span>
-                    <span className="metric-label">TOTAL VOLUME</span>
+                    <span className="metric-value">15,420</span>
+                    <span className="metric-label">TOTAL XP EARNED</span>
                   </div>
                   <div className="metric-exercises">
                     <div className="exercise-stat">
-                      <span className="exercise-name">BICEP CURLS</span>
+                      <span className="exercise-name">THIS WEEK</span>
                       <span className="exercise-value">
-                        1100 <span className="metric-unit">lb</span>
+                        2,850 <span className="metric-unit">XP</span>
                       </span>
                     </div>
                     <div className="exercise-stat">
-                      <span className="exercise-name">DEADLIFTS</span>
+                      <span className="exercise-name">NEXT LEVEL</span>
                       <span className="exercise-value">
-                        360 <span className="metric-unit">lb</span>
+                        580 <span className="metric-unit">XP</span>
                       </span>
                     </div>
                   </div>
@@ -515,20 +473,20 @@ function App() {
             </div>
             <div className="metric-panel">
               <h2 className="panel-title">
-                <span className="highlight">Automatic</span> rep counting.
+                <span className="highlight">Badges</span> & achievements.
               </h2>
               <div className="phone-mockup-small">
                 <div className="rep-counter-screen">
                   <div className="rep-display">
-                    <span className="rep-number">3</span>
-                    <span className="rep-total">/10</span>
+                    <span className="rep-number">37</span>
+                    <span className="rep-total">/100</span>
                   </div>
                   <div className="exercise-info">
-                    <span className="exercise-icon">🏋️</span>
+                    <span className="exercise-icon">💪</span>
                     <span className="exercise-name">
-                      DEADLIFTS
+                      BADGES UNLOCKED
                       <br />
-                      40 LBS
+                      KEEP GOING!
                     </span>
                   </div>
                 </div>
@@ -539,66 +497,62 @@ function App() {
       </section>
 
       {/* App Showcase Section */}
-      <section className="app-showcase-section" ref={appShowcaseRef}>
+      <section className="app-showcase-section">
         <div className="container">
           <div className="app-showcase-content">
             <div className="app-showcase-text">
               <h2 className="mega-title">
-                Experience the
+                Your Fitness
                 <br />
-                <span className="highlight">Power</span> of
+                <span className="highlight">Adventure</span>
                 <br />
-                Smart Training
+                Awaits
               </h2>
               <p className="section-description">
-                Track every rep, analyze your performance, and reach your goals
-                faster with real-time insights and personalized coaching - all
-                in the palm of your hand.
+                Transform every workout into an epic quest. Earn XP, unlock
+                achievements, compete with friends, and dominate leaderboards -
+                all while building the strongest version of yourself.
               </p>
               <div className="app-features-list">
                 <div className="app-feature">
-                  <span className="feature-check">✓</span>
-                  <span>Real-time workout tracking</span>
+                  <span className="feature-check">🏆</span>
+                  <span>100+ unique achievement badges to collect</span>
                 </div>
                 <div className="app-feature">
-                  <span className="feature-check">✓</span>
-                  <span>Detailed performance analytics</span>
+                  <span className="feature-check">⚡</span>
+                  <span>Level up system with 50+ ranks to conquer</span>
                 </div>
                 <div className="app-feature">
-                  <span className="feature-check">✓</span>
-                  <span>Personalized workout recommendations</span>
+                  <span className="feature-check">🔥</span>
+                  <span>Daily streaks with massive bonus rewards</span>
                 </div>
                 <div className="app-feature">
-                  <span className="feature-check">✓</span>
-                  <span>Track your progress over time</span>
+                  <span className="feature-check">⚔️</span>
+                  <span>Challenge friends and climb leaderboards</span>
                 </div>
               </div>
             </div>
-            <div className="app-carousel">
+            <div className="app-showcase-images">
               <div className="app-screenshot">
                 <img
                   src={dashboard}
                   alt="Playfit Dashboard - Welcome screen with workout stats"
                 />
-                <div className="screenshot-label">Dashboard</div>
               </div>
               <div className="app-screenshot">
                 <img
                   src={exerciseStats}
                   alt="Live exercise analysis with velocity tracking"
                 />
-                <div className="screenshot-label">Live Analysis</div>
               </div>
               <div className="app-screenshot">
                 <img
                   src={setComplete}
                   alt="Set completion with performance breakdown"
                 />
-                <div className="screenshot-label">Performance</div>
               </div>
               <div className="app-screenshot">
                 <img src={analytics} alt="Workout analytics and insights" />
-                <div className="screenshot-label">Analytics</div>
               </div>
             </div>
           </div>
@@ -609,19 +563,16 @@ function App() {
       <section className="product-hero">
         <div className="container">
           <h2 className="mega-title center">
-            Playfit Gets Smarter
+            Every Rep Earns XP,
             <br />
-            as <span className="highlight">You</span> Get Stronger
+            Every <span className="highlight">Workout</span> Levels You Up
           </h2>
           <p className="product-description">
-            The matte black smart collar features advanced motion sensors in a
-            compact,
+            The smart collar that turns your training into an epic adventure.
             <br />
-            durable design. Six precision screws secure the two halves, while
-            the hinged
+            Track everything automatically while you focus on crushing your
             <br />
-            split-ring with inner padding grips any bar securely for reliable
-            tracking.
+            quests, earning badges, and becoming a fitness legend.
           </p>
           <div className="product-showcase">
             <img
@@ -638,16 +589,7 @@ function App() {
         <div className="container">
           <div className="footer-content">
             <div className="footer-main">
-              <div className="logo">
-                <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
-                  <path
-                    d="M8 8L16 20L8 32M24 8L32 20L24 32"
-                    stroke="white"
-                    strokeWidth="3"
-                  />
-                </svg>
-                <span>PLAYFIT</span>
-              </div>
+              <img src={logo} alt="Playfit Logo" height="35" />
               <div className="footer-app">
                 <h3>Get the Playfit app</h3>
                 <div className="app-buttons">
