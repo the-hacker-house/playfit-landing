@@ -13,6 +13,8 @@ import setComplete from "./assets/set-complete.png";
 import weightMachine from "./assets/weight-machine.png";
 import weightStackCloseup from "./assets/weight-stack-closeup.png";
 
+const WAITLIST_URL = "https://forms.gle/Hqn6b86PdxScVEBK7";
+
 function App() {
   return (
     <div className="app">
@@ -21,7 +23,12 @@ function App() {
         <div className="container">
           <div className="header-content">
             <img src={logo} alt="Playfit Logo" height="32" />
-            <button className="cta-button">Sold Out ›</button>
+            <button
+              className="cta-button"
+              onClick={() => window.open(WAITLIST_URL, "_blank")}
+            >
+              Join Waitlist ›
+            </button>
           </div>
         </div>
       </header>
@@ -95,7 +102,12 @@ function App() {
                 complete daily quests, climb leaderboards, and compete with
                 friends as you transform into the strongest version of yourself.
               </p>
-              <button className="cta-button">Sold Out ›</button>
+              <button
+                className="cta-button"
+                onClick={() => window.open(WAITLIST_URL, "_blank")}
+              >
+                Join Waitlist ›
+              </button>
             </div>
           </div>
         </div>
@@ -117,7 +129,12 @@ function App() {
                 secure it. The inner padding ensures a snug, secure fit on metal
                 bars and rods.
               </p>
-              <button className="cta-button">Sold Out ›</button>
+              <button
+                className="cta-button"
+                onClick={() => window.open(WAITLIST_URL, "_blank")}
+              >
+                Join Waitlist ›
+              </button>
             </div>
             <div className="feature-image">
               <img
@@ -150,7 +167,12 @@ function App() {
                 or at the end. Works with Olympic bars, adjustable dumbbells,
                 and standard barbells for maximum versatility.
               </p>
-              <button className="cta-button">Sold Out ›</button>
+              <button
+                className="cta-button"
+                onClick={() => window.open(WAITLIST_URL, "_blank")}
+              >
+                Join Waitlist ›
+              </button>
             </div>
           </div>
         </div>
@@ -198,7 +220,12 @@ function App() {
                 campaigns to earn massive XP bonuses, unlock exclusive badges,
                 and climb to the top of the leaderboard.
               </p>
-              <button className="cta-button">Sold Out ›</button>
+              <button
+                className="cta-button"
+                onClick={() => window.open(WAITLIST_URL, "_blank")}
+              >
+                Join Waitlist ›
+              </button>
             </div>
           </div>
         </div>
@@ -281,7 +308,12 @@ function App() {
                 Every rep earns XP, every milestone unlocks rewards. Compare
                 your progress with friends and see who rules the leaderboard.
               </p>
-              <button className="cta-button">Sold Out ›</button>
+              <button
+                className="cta-button"
+                onClick={() => window.open(WAITLIST_URL, "_blank")}
+              >
+                Join Waitlist ›
+              </button>
             </div>
             <div className="vbt-chart">
               <div className="chart-bar" style={{ height: "100%" }}>
@@ -387,7 +419,12 @@ function App() {
                 challenges, and unlock new training zones as you prove your
                 strength.
               </p>
-              <button className="cta-button">Sold Out ›</button>
+              <button
+                className="cta-button"
+                onClick={() => window.open(WAITLIST_URL, "_blank")}
+              >
+                Join Waitlist ›
+              </button>
             </div>
           </div>
         </div>
