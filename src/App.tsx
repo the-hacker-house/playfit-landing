@@ -1,12 +1,10 @@
 import "./App.css";
-import appleLogo from "./assets/apple.png";
 import collarClosed from "./assets/collar-closed.png";
 import collarInsideDumbbell from "./assets/collar-inside-dumbbell.png";
 import collarOpen from "./assets/collar-open.png";
 import collarOutsideDumbbell from "./assets/collar-outside-dumbbell.png";
 import dashboard from "./assets/dashboard.png";
 import exerciseStats from "./assets/exercise-stats.png";
-import googleLogo from "./assets/google.png";
 import logo from "./assets/logo.png";
 import analytics from "./assets/more-analytics.png";
 import setComplete from "./assets/set-complete.png";
@@ -44,22 +42,6 @@ function App() {
           <p className="hero-subtitle">
             Level Up Your Fitness With Gamified Training
           </p>
-          <div className="app-buttons">
-            <button className="app-store-button">
-              <img src={appleLogo} alt="Apple" className="store-logo" />
-              <div>
-                <div className="download-text">Download on the</div>
-                <div className="store-text">App Store</div>
-              </div>
-            </button>
-            <button className="app-store-button play-store">
-              <img src={googleLogo} alt="Google Play" className="store-logo" />
-              <div>
-                <div className="download-text">Get it on</div>
-                <div className="store-text">Google Play</div>
-              </div>
-            </button>
-          </div>
           <div className="hero-product-image">
             <img
               src={collarInsideDumbbell}
@@ -627,37 +609,8 @@ function App() {
           <div className="footer-content">
             <div className="footer-main">
               <img src={logo} alt="Playfit Logo" height="35" />
-              <div className="footer-app">
-                <h3>Get the Playfit app</h3>
-                <div className="app-buttons">
-                  <button className="app-store-button">
-                    <img src={appleLogo} alt="Apple" className="store-logo" />
-                    <div>
-                      <div className="download-text">Download on the</div>
-                      <div className="store-text">App Store</div>
-                    </div>
-                  </button>
-                  <button className="app-store-button play-store">
-                    <img
-                      src={googleLogo}
-                      alt="Google Play"
-                      className="store-logo"
-                    />
-                    <div>
-                      <div className="download-text">Get it on</div>
-                      <div className="store-text">Google Play</div>
-                    </div>
-                  </button>
-                </div>
-              </div>
             </div>
-            <div className="footer-links">
-              <a href="#cancellations">Cancellations & Returns</a>
-              <a href="#terms">Terms of Sale</a>
-              <a href="#use">Terms of Use</a>
-              <a href="#privacy">Privacy Policy</a>
-            </div>
-            <div className="footer-copyright">© 2024 Playfit, Inc.</div>
+            <div className="footer-copyright">© {new Date().getFullYear()} Playfit Innovation Limited</div>
           </div>
         </div>
       </footer>
